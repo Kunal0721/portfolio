@@ -84,6 +84,9 @@ body{
     letter-spacing: 3px;
     margin-bottom: 10px;
     text-align: center;
+    animation: fadeInDown 1s ease-out;
+    opacity: 0;
+    animation-fill-mode: forwards;
 }
 
 .sub-head {
@@ -92,6 +95,49 @@ body{
     letter-spacing: 2px;
     text-align: center;
     line-height: 1.2;
+    background: linear-gradient(90deg, #8B8B8B, #FFFFFF, #8B8B8B);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: fadeInUp 1s ease-out 0.3s, gradientShift 3s ease infinite;
+    opacity: 0;
+    animation-fill-mode: forwards;
+}
+
+/* Hero Animations */
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% center;
+    }
+    50% {
+        background-position: 100% center;
+    }
+    100% {
+        background-position: 0% center;
+    }
 }
 
 /* About Section */
