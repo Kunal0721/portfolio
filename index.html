@@ -9,6 +9,232 @@
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg: #0b0b0b;
+            --card-dark: #0c0d0d;
+            --muted: #b0b0b0;
+            --accent: #e6e6e6;
+        }
+
+        html,
+        body {
+            height: 100%;
+            background: var(--bg);
+            color: var(--accent);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial
+        }
+
+        a {
+            color: inherit
+        }
+
+        /* Projects grid - we'll use 3-column layout on desktop, 1 on mobile */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 22px
+        }
+
+        /* New fancy card (adapted from your duplicate) */
+        .project-outer {
+            display: flex;
+            justify-content: center
+        }
+
+        .outer-card {
+            width: 350px;
+            height: 450px;
+            border-radius: 12px;
+            padding: 1px;
+            background: radial-gradient(circle 250px at 0% 0%, #ffffff08, transparent);
+            position: relative
+        }
+
+        .outer-card .dot {
+            width: 6px;
+            aspect-ratio: 1;
+            border-radius: 999px;
+            background: #fff;
+            box-shadow: 0 0 12px #ffffff55;
+            position: absolute;
+            right: 10%;
+            top: 10%;
+            z-index: 6;
+            animation: moveDot 6s linear infinite
+        }
+
+        @keyframes moveDot {
+
+            0%,
+            100% {
+                top: 10%;
+                right: 10%
+            }
+
+            25% {
+                top: 10%;
+                right: calc(100% - 35px)
+            }
+
+            50% {
+                top: calc(100% - 30px);
+                right: calc(100% - 35px)
+            }
+
+            75% {
+                top: calc(100% - 30px);
+                right: 10%
+            }
+        }
+
+        .card-inner {
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            border-radius: 11px;
+            border: solid 1px #202222;
+            background: linear-gradient(circle 300px at 0% 0%, #232425, #0c0d0d);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            color: #fff;
+            overflow: hidden
+        }
+
+        .card-inner .ray {
+            width: 250px;
+            height: 50px;
+            border-radius: 100px;
+            position: absolute;
+            background-color: #c7c7c7;
+            opacity: 0.12;
+            box-shadow: 0 0 60px #fff;
+            filter: blur(10px);
+            transform-origin: 10%;
+            top: 0;
+            left: -10%;
+            transform: rotate(40deg);
+            pointer-events: none
+        }
+
+        .project-image {
+            width: calc(100% - 20%);
+            height: 180px;
+            object-fit: cover;
+            margin: 10% 10% 12px 10%;
+            border-radius: 6px
+        }
+
+        .content {
+            padding: 0 10% 18px 10%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            flex: 1;
+            position: relative;
+            z-index: 3
+        }
+
+        .title {
+            font-weight: 800;
+            font-size: 1.45rem;
+            background: linear-gradient(45deg, #ddd, #fff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 0;
+            padding: 0 8px
+        }
+
+        .description {
+            color: var(--muted);
+            font-size: .95rem;
+            line-height: 1.4;
+            margin: 0;
+            padding: 0 8px
+        }
+
+        .button-container {
+            margin-top: auto;
+            padding-top: 6px
+        }
+
+        .project-button {
+            width: 100%;
+            padding: 11px 18px;
+            background: linear-gradient(135deg, #444, #222);
+            border: 1px solid #3a3a3a;
+            border-radius: 8px;
+            color: #fff;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all .25s
+        }
+
+        .project-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6)
+        }
+
+        .project-button:active {
+            transform: translateY(0)
+        }
+
+        .line {
+            width: 100%;
+            height: 1px;
+            position: absolute;
+            background-color: #1f2020;
+            pointer-events: none;
+            z-index: 2
+        }
+
+        .topl {
+            top: 10%;
+            background: linear-gradient(90deg, #888 30%, #1d1f1f 70%)
+        }
+
+        .bottoml {
+            bottom: 10%
+        }
+
+        .leftl {
+            left: 10%;
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(180deg, #747474 30%, #222424 70%)
+        }
+
+        .rightl {
+            right: 10%;
+            width: 1px;
+            height: 100%
+        }
+
+        /* Responsive tweaks */
+        @media (max-width:992px) {
+            .cards-container {
+                grid-template-columns: repeat(1, 1fr)
+            }
+
+            .hero {
+                padding: 60px 6%
+            }
+        }
+
+        @media (max-width:420px) {
+            .hero .sub-head {
+                font-size: 2.1rem
+            }
+
+            .outer-card {
+                width: 320px;
+                height: 420px
+            }
+        }
+    </style>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -120,55 +346,90 @@
     <!-- about section ends  -->
 
     <!-- project section starts  -->
-    <section class="projects-section" id="projects">
+    <section class="projects-section py-5" id="projects">
         <div class="container">
             <h2 class="section-title">My Projects</h2>
 
             <div class="projects-grid">
-                <!-- Tattoo Salon Project -->
-                <div class="project-card" data-aos="fade-up" data-aos-duration="800">
-                    <div class="project-image">
-                        <img src="Screenshot (57).png" alt="Tattoo Salon">
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title">Tattoo Salon</h3>
-                        <p class="project-description">A modern and elegant website for a tattoo salon featuring gallery
-                            showcase, booking system, and artist portfolio.</p>
-                        <a href="https://kunal0721.github.io/tattoo-salon/" target="_blank" class="project-link">
-                            View Project →
-                        </a>
+
+                <!-- Project 1 -->
+                <div class="project-outer" data-aos="fade-up" data-aos-duration="800">
+                    <div class="outer-card">
+                        <div class="dot"></div>
+                        <div class="card-inner">
+                            <div class="ray"></div>
+                            <img src="Screenshot (57).png" alt="Tattoo Salon" class="project-image">
+                            <div class="content">
+                                <h3 class="title">Tattoo Salon</h3>
+                                <p class="description">A modern and elegant website for a tattoo salon featuring gallery
+                                    showcase, booking
+                                    system, and artist portfolio.</p>
+                                <div class="button-container">
+                                    <a class="project-button" href="https://kunal0721.github.io/tattoo-salon/"
+                                        target="_blank">View
+                                        Project →</a>
+                                </div>
+                            </div>
+                            <div class="line topl"></div>
+                            <div class="line leftl"></div>
+                            <div class="line bottoml"></div>
+                            <div class="line rightl"></div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Tour Project -->
-                <div class="project-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
-                    <div class="project-image">
-                        <img src="Untitled design (2).png" alt="Tour Website">
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title">Tour Website</h3>
-                        <p class="project-description">An immersive travel and tour booking platform with destination
-                            guides, package details, and interactive features.</p>
-                        <a href="https://kunal0721.github.io/Tour/" target="_blank" class="project-link">
-                            View Project →
-                        </a>
+                <!-- Project 2 -->
+                <div class="project-outer" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                    <div class="outer-card">
+                        <div class="dot"></div>
+                        <div class="card-inner">
+                            <div class="ray"></div>
+                            <img src="Untitled design (2).png" alt="Tour Website" class="project-image">
+                            <div class="content">
+                                <h3 class="title">Tour Website</h3>
+                                <p class="description">An immersive travel and tour booking platform with destination
+                                    guides, package
+                                    details, and interactive features.</p>
+                                <div class="button-container">
+                                    <a class="project-button" href="https://kunal0721.github.io/Tour/"
+                                        target="_blank">View Project
+                                        →</a>
+                                </div>
+                            </div>
+                            <div class="line topl"></div>
+                            <div class="line leftl"></div>
+                            <div class="line bottoml"></div>
+                            <div class="line rightl"></div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Agency Project -->
-                <div class="project-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
-                    <div class="project-image">
-                        <img src="Screenshot (58).png" alt="Auric Canvas Agency">
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title">Web Agency</h3>
-                        <p class="project-description">A creative digital agency website showcasing services, portfolio,
-                            and team expertise with stunning visuals.</p>
-                        <a href="https://auric-canvas.vercel.app/" target="_blank" class="project-link">
-                            View Project →
-                        </a>
+                <!-- Project 3 -->
+                <div class="project-outer" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                    <div class="outer-card">
+                        <div class="dot"></div>
+                        <div class="card-inner">
+                            <div class="ray"></div>
+                            <img src="Screenshot (58).png" alt="Auric Canvas Agency" class="project-image">
+                            <div class="content">
+                                <h3 class="title">Web Agency</h3>
+                                <p class="description">A creative digital agency website showcasing services, portfolio,
+                                    and team
+                                    expertise with stunning visuals.</p>
+                                <div class="button-container">
+                                    <a class="project-button" href="https://auric-canvas.vercel.app/"
+                                        target="_blank">View Project
+                                        →</a>
+                                </div>
+                            </div>
+                            <div class="line topl"></div>
+                            <div class="line leftl"></div>
+                            <div class="line bottoml"></div>
+                            <div class="line rightl"></div>
+                        </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
